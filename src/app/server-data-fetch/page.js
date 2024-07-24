@@ -4,6 +4,7 @@ async function fetchListOfUsers() {
 
     try
     {
+        // const response = await fetch("https://dummyjson.com/users",{cache:'no-store'});
         const response = await fetch("https://dummyjson.com/users");
         const data = await response.json();
 
@@ -27,6 +28,17 @@ async function ServerSideDataFetching() {
     return (
         <div>
             <h1>Server Side Data Fetching</h1>
+
+            <ul>
+                {
+                    listOfUsers && listOfUsers.length > 0 ?
+                    (listOfUsers.map((user, index) => (
+                        <li key={index}>{user.firstName}</li>
+                    )))
+                    :null
+                }
+            </ul>
+
         </div>
     );
 }
