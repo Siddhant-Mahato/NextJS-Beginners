@@ -1,3 +1,4 @@
+import Link from "next/link";
 
 
 async function fetchListOfUsers() {
@@ -23,19 +24,23 @@ async function ServerSideDataFetching() {
 
     const listOfUsers = await fetchListOfUsers();
 
-    console.log(listOfUsers);
+    // console.log(listOfUsers);
 
     return (
-        <div>
-            <h1>Server Side Data Fetching</h1>
+        <div className="p-10 ">
+            <h1>Server Side Data Fetching : User List Page</h1>
 
             <ul>
                 {
                     listOfUsers && listOfUsers.length > 0 ?
                     (listOfUsers.map((user, index) => (
-                        <li key={index}>{user.firstName}</li>
+                        <li className="mt-5 cursor-pointer" key={index}>
+                            
+                            <Link href={`/server-data-fetch/${user.id}`} >{user.firstName}</Link>
+                            
+                        </li>
                     )))
-                    :null
+                    :(null)
                 }
             </ul>
 
